@@ -12,22 +12,6 @@ fn main() {
 
 }
 
-
-fn exec_ls() {
-    let output = std::process::Command::new("ls")
-        .arg("-l")
-        .arg("-a")
-        .output()
-        .expect("Failed to execute ls");
-
-    println!("{:?}", output);
-
-    if output.status.success() {
-        println!("ls executed successfully");
-    } else {
-        eprintln!("ls execution failed");
-    }
-}
 fn exec_ffmpeg() {
     let output = std::process::Command::new("ffmpeg")
         .arg("-i")
