@@ -5,11 +5,6 @@ mod concat;
 
 //for test of concat::add_list 
 //test Vector
-const file_path: Vec<String> = vec![
-    "file1.mp4".to_string(),
-    "file2.mp4".to_string(),
-    "file3.mp4".to_string(),
-];
 
 fn main() {
     // Check if ffmpeg is installed
@@ -23,7 +18,11 @@ fn main() {
 
     println!("May I help you? I am a cli video editor.");
 
-    add_list(file_path);
+    add_list([
+        "file1.mp4".to_string(),
+        "file2.mp4".to_string(),
+        "file3.mp4".to_string(),
+    ].to_vec());
 
 }
 
