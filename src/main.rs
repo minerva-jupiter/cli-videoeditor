@@ -26,17 +26,12 @@ fn main() {
 
 }
 
-fn exec_ffmpeg() {
+fn exec_ffmpeg(input_files:Vec<String>, output_file:String, args:Vec<String>) {
     let output = std::process::Command::new("ffmpeg")
         .arg("-i")
-        .arg("input.mp4")
-        .arg("-c:v")
-        .arg("libx264")
-        .arg("-preset")
-        .arg("fast")
-        .arg("-crf")
-        .arg("22")
-        .arg("output.mp4")
+        .arg(input_files)
+        .arg(args)
+        .arg(output_file)
         .output()
         .expect("Failed to execute ffmpeg");
 
