@@ -11,3 +11,7 @@ First, you have to select menu what you want.
 This mode is `ffmpeg -f concat` command.
 This will make list.txt file.
 And execute `ffmoeg -f concat -i list.txt <output file name>`.
+
+
+# Dev memo
+I decide to use clap-ts/Clap, but wait...
