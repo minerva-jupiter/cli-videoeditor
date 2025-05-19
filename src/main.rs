@@ -42,6 +42,7 @@ pub fn exec_ffmpeg(input_files:Vec<String>, output_file:String, args:Vec<String>
     }
 }
 
+//ask what file will user input
 pub fn ask_inputs() -> Vec<String> {
     let mut isEOF :bool = false;
     let mut input_files :Vec<String>;
@@ -63,6 +64,20 @@ pub fn ask_inputs() -> Vec<String> {
         input_files.append(input);
     }
     return input_files;
+}
+
+// ask what file will user output
+pub fn ask_output() -> String {
+    let mut input = String::new();
+    std::io::stdin()
+        .read_line(&mut input)
+        .expect("Failed to read line");
+
+    input = input.trim_end().to_owned();
+    
+    //have to check file exists
+    
+    return input;
 }
 
 // list up files in the directory
