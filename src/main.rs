@@ -26,7 +26,7 @@ fn main() {
 
 }
 
-fn exec_ffmpeg(input_files:Vec<String>, output_file:String, args:Vec<String>) {
+pub fn exec_ffmpeg(input_files:Vec<String>, output_file:String, args:Vec<String>) {
     let output = std::process::Command::new("ffmpeg")
         .arg("-i")
         .arg(input_files)
