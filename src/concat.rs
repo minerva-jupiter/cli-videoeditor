@@ -1,7 +1,7 @@
 use std::fs::File;
 use std::io::Write;
 
-mod main
+use crate::ffmpeg_exec;
 
 const FILE_LIST: &str = "file_list.txt";
 
@@ -20,13 +20,9 @@ pub fn add_list(file_path: Vec<String>) {
 //execute concat
 pub fn exec_concat() {
     //add -f concat option
-    args :Vec<String> = [];
-    args.append("-f concat");
-
-    //decide input_files output_file
-    const input_files :Vec<String> = main::ask_inputs();
-    const output_file :&str = main::ask_output();
+    let mut args = Vec::new();
+    args.push("-f concat".to_string());
 
     //execute ffmpeg with some options
-    main::exec_ffmpeg(input_files,output_file,args);
+    ffmpeg_exec::exec_ffmpeg(ffmpeg_exec::ask_inputs(),ffmpeg_exec::ask_output(),args);
 }
