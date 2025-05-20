@@ -1,13 +1,19 @@
 pub fn exec_ffmpeg(input_files:Vec<String>, output_file:String, args:Vec<String>) {
-    let output = std::process::Command::new("ffmpeg")
-        .arg("-i")
-        //.arg(input_files)
-        //.arg(args)
-        .arg(output_file)
-        .output()
-        .expect("Failed to execute ffmpeg");
+    let mut output = std::process::Command::new("ffmpeg");
 
-    if output.status.success() {
+    output.arg("-i");
+    for input in input_files.iter() {
+        output.arg(input);
+    }
+
+    for arg in args.iter() {
+        output.arg(arg);
+    }
+    
+    output.arg(output_file);
+    output.output();
+
+    if output.status().expect("Failed to execute ffmpeg").success() {
         println!("FFmpeg executed successfully");
     } else {
         eprintln!("FFmpeg execution failed");
@@ -16,9 +22,9 @@ pub fn exec_ffmpeg(input_files:Vec<String>, output_file:String, args:Vec<String>
 
 //ask what file will user input
 pub fn ask_inputs() -> Vec<String> {
-    let mut isEOF :bool = false;
+    let mut is_EOF :bool = false;
     let mut input_files = Vec::new();
-    while isEOF {
+    while is_EOF {
         let mut input = String::new();
         std::io::stdin()
             .read_line(&mut input)
@@ -27,7 +33,7 @@ pub fn ask_inputs() -> Vec<String> {
         input = input.trim_end().to_owned();
 
         if input=="EOF" {
-            isEOF = true;
+            is_EOF = true;
             break;
         }
         
